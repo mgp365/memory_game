@@ -60,8 +60,16 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
+    # Regina Aguilar Garcia - A00841923
+    if hide.count(True) == 0:
+        up()
+        goto(-75, 0)  # posición centrada
+        color("white")
+        write("Ganaste!", font=("Arial", 26, "bold"))
+
     update()
     ontimer(draw, 100)
+
 
 shuffle(tiles)
 setup(420, 420, 370, 0)
