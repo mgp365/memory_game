@@ -67,6 +67,12 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
+    #Cesar Tadeo Bernal Sauceda - A00841810
+    up()
+    goto(-125, 175)
+    color("red")
+    write(f"Movimientos: {counter}", align="center", font=("Arial", 16, "normal"))
+
     # Regina Aguilar Garcia - A00841923
     if hide.count(True) == 0:
         up()
