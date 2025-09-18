@@ -1,5 +1,4 @@
 import random
-#from random import *
 from turtle import *
 from freegames import path
 
@@ -7,6 +6,7 @@ car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
+counter = 0
 
 def square(x, y):
     "Draw white square with black outline at (x, y)."
@@ -30,8 +30,14 @@ def xy(count):
 
 def tap(x, y):
     "Update mark and hidden tiles based on tap."
+    #Cesar Tadeo Bernal Sauceda - A00841810
+    global counter
     spot = index(x, y)
     mark = state['mark']
+
+    #Cesar Tadeo Bernal Sauceda - A00841810
+    counter += 1
+    #print(counter)
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
@@ -47,9 +53,6 @@ def draw():
     goto(0, 0)
     shape(car)
     stamp()
-    # Mariana Guerrero Pérez - A00840918
-    #Colores como innovación
-    colors = ["#FF5733", "#33FF57", "#3357FF", "#F1C40F", "#9B59B6", "#E67E22","#2ECC71", "#1ABC9C", "#3498DB", "#E74C3C", "#D35400", "#7D3C98","#16A085", "#2980B9", "#8E44AD", "#27AE60", "#C0392B", "#F39C12","#D81B60", "#5DADE2", "#52BE80", "#AF7AC5", "#CA6F1E", "#45B39D","#1F618D", "#884EA0", "#229954", "#B03A2E", "#7B241C", "#117A65","#2471A3", "#616A6B"]
 
     for count in range(64):
         if hide[count]:
@@ -58,15 +61,35 @@ def draw():
 
     mark = state['mark']
 
+    # Mariana Guerrero Pérez - A00840918
+    #Colores como innovación
+    colors = ["#FF5733", "#33FF57", "#3357FF", "#F1C40F", "#9B59B6", "#E67E22","#2ECC71", "#1ABC9C", "#3498DB", "#E74C3C", "#D35400", "#7D3C98","#16A085", "#2980B9", "#8E44AD", "#27AE60", "#C0392B", "#F39C12","#D81B60", "#5DADE2", "#52BE80", "#AF7AC5", "#CA6F1E", "#45B39D","#1F618D", "#884EA0", "#229954", "#B03A2E", "#7B241C", "#117A65","#2471A3", "#616A6B"]
     num_color = {i: colors[i] for i in range(32)} #color escogido por tiles
-
+    
+    #Gianmarco Barboza Alvarado - A00843087
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
-        #color("black")
-        color(num_color[tiles[mark]]) #escoger por num
+        if tiles[mark] < 10:
+            goto(x + 15, y + 3)
+        else:
+            goto(x + 4, y + 3)
+        #color('black')
+        color(num_color[tiles[mark]])
         write(tiles[mark], font=('Arial', 30, 'normal'))
+
+    #Cesar Tadeo Bernal Sauceda - A00841810
+    up()
+    goto(-125, 175)
+    color("red")
+    write(f"Movimientos: {counter}", align="center", font=("Arial", 16, "normal"))
+
+    # Regina Aguilar Garcia - A00841923
+    if hide.count(True) == 0:
+        up()
+        goto(-75, 0)  # posición centrada
+        color("white")
+        write("Ganaste!", font=("Arial", 26, "bold"))
 
     update()
     ontimer(draw, 100)
