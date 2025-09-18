@@ -59,11 +59,15 @@ def draw():
             square(x, y)
 
     mark = state['mark']
-
+    
+    #Gianmarco Barboza Alvarado - A00843087
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        if tiles[mark] < 10:
+            goto(x + 15, y + 3)
+        else:
+            goto(x + 4, y + 3)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
