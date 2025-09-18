@@ -73,12 +73,20 @@ def draw():
 
     #Cesar Tadeo Bernal Sauceda - A00841810
     up()
-    goto(-180, 180)   # esquina superior izquierda
-    color('red')
-    write(f"Clicks: {counter}", font=('Arial', 16, 'bold'))
+    goto(-125, 175)
+    color("red")
+    write(f"Movimientos: {counter}", align="center", font=("Arial", 16, "normal"))
+
+    # Regina Aguilar Garcia - A00841923
+    if hide.count(True) == 0:
+        up()
+        goto(-75, 0)  # posición centrada
+        color("white")
+        write("Ganaste!", font=("Arial", 26, "bold"))
 
     update()
     ontimer(draw, 100)
+
 
 shuffle(tiles)
 setup(420, 420, 370, 0)
